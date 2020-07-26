@@ -24,7 +24,7 @@
         </div>
         <div class="row">
                 <div class="col-sm-12" >
-                    <section class="questions">     
+                    <section id="questions" class="hide">     
                         <h2 class="question">Question Placeholder</h2>
                     </section>
                 </div>
@@ -34,7 +34,7 @@
         
          <div class="row">
              <div class="col-sm-12">
-                <section class="answers">
+                <section id="answer-section" class="hide">
                     <div class="btn-group-vertical">
                          <button class="btn btn-primary btn-lg answer1" type="submit">1 Answer Placeholder</button>
                          <button class="btn btn-primary btn-lg answer2" type="submit">2 Answer Placeholder</button>
@@ -51,7 +51,7 @@
                 <label for="initials" class="col-sm-2 col-form-label">Enter your initials</label>
                 <div class="col-sm-6">
                 <input class="form-control" type="text" placeholder="Default input">
-                <button type="button" class="btn btn-primary btn-lg quizstart">Submit</button>
+                <button type="button" class="btn btn-primary btn-lg">Submit</button>
                 </div>
               </div>
          </form>
@@ -62,13 +62,14 @@
             <section class="col-sm-12">
               <section class="quiz start">
 
-              <p class="text-center"><button type="button" class="btn btn-primary btn-lg quizstart">Quiz Start</button></p> 
+             <p class="text-center"><button type="button" class="btn btn-primary btn-lg" id="quiz-start">Quiz Start</button></p> 
 
             </section>
          </div>
 
         </div>
     </div>
+<script type="text/javascript" src="../02-Homework/script.js"></script>
 </body>
 </html>
 
