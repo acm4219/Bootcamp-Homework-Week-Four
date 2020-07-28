@@ -1,6 +1,7 @@
 var gameStartButton = document.getElementById("quiz-start");
 
 var answersection = document.getElementById("answersection");
+
 var answerButton = document.getElementById("answer1");
 var answerButton2 = document.getElementById("answer2");
 var answerButton3 = document.getElementById("answer3");
@@ -15,22 +16,48 @@ var submitForm = document.querySelector(".submitform");
 var h2 = document.querySelector(".question"); 
 var questionIndex = 0;
 var questionsAndAnswers = [
-    {question : 'What is not a variable type?', answers : ['var', 'let', 'from', 'const'], solution : 'from'},
-    {question : 'How do you write a variable?', answers : ['var examplePrompt = ', 'var EXAMPLEPROMPT = ', 'var exampleprompt()', 'VAR eXaMpLe-ProMPT()'], solution : 'var examplePrompt'},
-    {question : 'What is not an object that can be used in a variable?', answers : ['Boolean', 'Number', 'String', 'Noodle'], solution: 'Noodle'},
-    {question : 'What is an Array?', answers : ['A List', 'A lot of variables', 'Magical Psuedocode', 'A Ray'], solution : "A List"},
+    
+    {question : 'What is not a variable type?', 
+    answers : ['1. var', '2. let', '3. from', '4. const'], 
+    solution :'3. from'},
+    
+    {question : 'How do you write a variable?', 
+    answers : ['1. var examplePrompt = ', '2. var EXAMPLEPROMPT = ', '3. var exampleprompt()', '4. VAR eXaMpLe-ProMPT()'], 
+    solution : '1. var examplePrompt'},
+    
+    {question : 'What is not an object that can be used in a variable?', 
+    answers : ['1. Boolean', '2. Number', '3. String', '4. Noodle'], 
+    solution: '4. Noodle'},
+
+    {question : 'What is an Array?', 
+    answers : ['1. A lot of variables', '2. A List', '3. Magical Psuedocode', '4. A Ray'], 
+    solution : "2. A List"},
 ]
 
+var answerSelection = [];
 
 var timeEl = document.querySelector(".timer");
-var secondsLeft = 10;
+var secondsLeft = 100;
 var submissionButton = document.querySelector(".submit-button");
 
 gameStartButton.addEventListener('click', gameStart);
-answerButton.addEventListener('click', questionAnswerRotation);
-answerButton2.addEventListener('click', questionAnswerRotation);
-answerButton3.addEventListener('click', questionAnswerRotation);
-answerButton4.addEventListener('click', questionAnswerRotation);
+
+answersection.addEventListener('click', function(event) {
+    event.preventDefault();
+    if(event.target.matches("button") && questionIndex <= 3) {
+        answerSelection = event.target.getAttribute("data-answer");
+        if(questionsAndAnswers[questionIndex].solution[0] === event.target.textContent) {
+            //add time to timer maybe a function here
+            secondsLeft + 10
+            timeEl.textContent = "Timer: " + secondsLeft;
+        } else {
+            //subtract time maybe a function
+            secondsLeft - 10
+            timeEl.textContent = "Timer: " + secondsLeft;
+        }
+        questionAnswerRotation();
+    }
+});
 textElement.addEventListener('click', gameStart);
 // submissionButton.addEventListener('click', submitLog)
 
@@ -40,7 +67,6 @@ function gameStart() {
  gameStartButton.style.display = 'none';
  textElement.style.display = 'none';
  quizContainer.classList.remove('hide');
- submitForm.classList.add('hide');
  questionAnswerRotation();
  timeTracker();
 }
@@ -48,32 +74,30 @@ function gameStart() {
 
 function questionAnswerRotation() {
     //question rotation object make an array of object to rotate
-    // var solution = questionsAndAnswers[questionIndex].solution; 
-    // var clicked = 
+     
     h2.textContent = questionsAndAnswers[questionIndex].question;
     answerButton.textContent = questionsAndAnswers[questionIndex].answers[0];
     answerButton2.textContent = questionsAndAnswers[questionIndex].answers[1];
     answerButton3.textContent = questionsAndAnswers[questionIndex].answers[2];
     answerButton4.textContent = questionsAndAnswers[questionIndex].answers[3];
-    // if(solution === ) {
-
-    // }
-   
+          
     function increment() {
         if(questionIndex >= 3) {
             clearInterval(questionIndex); return;
+            
         }
         questionIndex++;
+        
     }
 
     increment();
-    // submitLog();
+    console.log(answerSelection)
 }
 
 
 function submitLog() {
- submitForm.classList.remove('hide'); 
-//  window.location.href = 'file:///C:/Users/Alex/Bootcamp-Homework-Week-Four/02-Homework/highscore.html';
+ 
+  window.location.href = 'file:///C:/Users/Alex/Bootcamp-Homework-Week-Four/02-Homework/highscore.html';
 }
 
 function timeTracker() {
