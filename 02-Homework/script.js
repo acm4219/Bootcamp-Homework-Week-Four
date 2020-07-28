@@ -1,22 +1,30 @@
 var gameStartButton = document.getElementById("quiz-start");
+
 var answersection = document.getElementById("answersection");
 var answerButton = document.getElementById("answer1");
 var answerButton2 = document.getElementById("answer2");
 var answerButton3 = document.getElementById("answer3");
 var answerButton4 = document.getElementById("answer4");
+
 var textElement = document.getElementById('text');
+
 var quizContainer = document.querySelector(".quizsection");
+
 var submitForm = document.querySelector(".submitform");
+
 var h2 = document.querySelector(".question"); 
-var questionIndex = 0
+var questionIndex = 0;
 var questionsAndAnswers = [
-    {question : 'What is question1?', answers : ['answer1.1', 'answer2.1', 'etc 1.', 'etc4'], solution : 'answer1.1'},
-    {question : 'What is question2?', answers : ['answer1.2', 'answer2.2', 'etc 2.', 'etc3'], solution : 'answer1.2'},
-    {question : 'What is question3?', answers : ['answer1.3', 'answer2.3', 'etc 3.', 'etc2'], solution: 'answer1.3'},
-    {question : 'What is question4?', answers : ['answer1.4', 'answer2.4', 'etc 4.', 'etc1'], solution : "answer1.4"},
+    {question : 'What is not a variable type?', answers : ['var', 'let', 'from', 'const'], solution : 'from'},
+    {question : 'How do you write a variable?', answers : ['var examplePrompt = ', 'var EXAMPLEPROMPT = ', 'var exampleprompt()', 'VAR eXaMpLe-ProMPT()'], solution : 'var examplePrompt'},
+    {question : 'What is not an object that can be used in a variable?', answers : ['Boolean', 'Number', 'String', 'Noodle'], solution: 'Noodle'},
+    {question : 'What is an Array?', answers : ['A List', 'A lot of variables', 'Magical Psuedocode', 'A Ray'], solution : "A List"},
 ]
+
+
 var timeEl = document.querySelector(".timer");
-var secondsLeft = 61;
+var secondsLeft = 10;
+var submissionButton = document.querySelector(".submit-button");
 
 gameStartButton.addEventListener('click', gameStart);
 answerButton.addEventListener('click', questionAnswerRotation);
@@ -24,7 +32,7 @@ answerButton2.addEventListener('click', questionAnswerRotation);
 answerButton3.addEventListener('click', questionAnswerRotation);
 answerButton4.addEventListener('click', questionAnswerRotation);
 textElement.addEventListener('click', gameStart);
-
+// submissionButton.addEventListener('click', submitLog)
 
 
 function gameStart() {
@@ -40,8 +48,8 @@ function gameStart() {
 
 function questionAnswerRotation() {
     //question rotation object make an array of object to rotate
-    var solution = questionsAndAnswers[questionIndex].solution; 
-    var clicked = 
+    // var solution = questionsAndAnswers[questionIndex].solution; 
+    // var clicked = 
     h2.textContent = questionsAndAnswers[questionIndex].question;
     answerButton.textContent = questionsAndAnswers[questionIndex].answers[0];
     answerButton2.textContent = questionsAndAnswers[questionIndex].answers[1];
@@ -50,13 +58,22 @@ function questionAnswerRotation() {
     // if(solution === ) {
 
     // }
-    questionIndex++;
+   
+    function increment() {
+        if(questionIndex >= 3) {
+            clearInterval(questionIndex); return;
+        }
+        questionIndex++;
+    }
+
+    increment();
     // submitLog();
 }
 
 
 function submitLog() {
  submitForm.classList.remove('hide'); 
+//  window.location.href = 'file:///C:/Users/Alex/Bootcamp-Homework-Week-Four/02-Homework/highscore.html';
 }
 
 function timeTracker() {
@@ -72,6 +89,7 @@ function timeTracker() {
     
       }, 1000);
 }
+
 
 
 
