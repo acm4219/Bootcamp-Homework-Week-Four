@@ -15,7 +15,8 @@ var questionsAndAnswers = [
     {question : 'What is question3?', answers : ['answer1.3', 'answer2.3', 'etc 3.', 'etc2'], solution: 'answer1.3'},
     {question : 'What is question4?', answers : ['answer1.4', 'answer2.4', 'etc 4.', 'etc1'], solution : "answer1.4"},
 ]
-
+var timeEl = document.querySelector(".timer");
+var secondsLeft = 61;
 
 gameStartButton.addEventListener('click', gameStart);
 answerButton.addEventListener('click', questionAnswerRotation);
@@ -33,6 +34,7 @@ function gameStart() {
  quizContainer.classList.remove('hide');
  submitForm.classList.add('hide');
  questionAnswerRotation();
+ timeTracker();
 }
 
 
@@ -49,6 +51,7 @@ function questionAnswerRotation() {
 
     // }
     questionIndex++;
+    // submitLog();
 }
 
 
@@ -57,7 +60,17 @@ function submitLog() {
 }
 
 function timeTracker() {
-
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = "Timer: " + secondsLeft;
+    
+        if(secondsLeft === 0) {
+          clearInterval(timerInterval);
+          quizContainer.classList.add('hide');
+          submitLog();
+        }
+    
+      }, 1000);
 }
 
 
