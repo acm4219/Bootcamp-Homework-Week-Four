@@ -46,7 +46,7 @@ answersection.addEventListener('click', function(event) {
     event.preventDefault();
     if(event.target.matches("button") && questionIndex <= 3) {
         answerSelection = event.target.getAttribute("data-answer");
-        if(questionsAndAnswers[questionIndex].solution[0] === event.target.textContent) {
+        if(questionsAndAnswers[questionIndex].solution === event.target.textContent) {
             //add time to timer maybe a function here
             secondsLeft + 10
             timeEl.textContent = "Timer: " + secondsLeft;
@@ -81,16 +81,16 @@ function questionAnswerRotation() {
     answerButton3.textContent = questionsAndAnswers[questionIndex].answers[2];
     answerButton4.textContent = questionsAndAnswers[questionIndex].answers[3];
           
-    function increment() {
-        if(questionIndex >= 3) {
-            clearInterval(questionIndex); return;
+    // function increment() {
+    //     if(questionIndex >= 3) {
+    //         clearInterval(questionIndex); return;
             
-        }
-        questionIndex++;
+    //     }
+       
         
-    }
-
-    increment();
+    // }
+    questionIndex++;
+    // increment();
     console.log(answerSelection)
 }
 
