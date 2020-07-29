@@ -37,7 +37,7 @@ var questionsAndAnswers = [
 var answerSelection = [];
 
 var timeEl = document.querySelector(".timer");
-var secondsLeft = 100;
+var secondsLeft = 60;
 var submissionButton = document.querySelector(".submit-button");
 
 gameStartButton.addEventListener('click', gameStart);
